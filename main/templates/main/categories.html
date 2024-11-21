@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main>
+    <div class="container m-auto mt-5 row gap-2 justify-content-center">
+        {% if categories %}
+            {% for category in categories %}
+                <div class="card col-3 p-0">
+                    <img
+                        class="card-img-top"
+                        src="{{ category.image }}"
+                        alt="{{ category.name }}"
+                    />
+                    <div class="card-body">
+                        <h3>
+                            <a class="text-decoration-none" href="{% url 'products' category.id %}">
+                                {{ category.name }}
+                            </a>
+                        </h3>
+                        <p class="card-text">
+                            {{ category.bio }}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1 class="d-flex justify-content-center text-muted">No categories</h1>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock content %}
